@@ -67,4 +67,18 @@ Biến môi trường (xem `backend/.env.example`): `PORT`, `MONGODB_URI`, `DB_N
 
 Mã lỗi: 400 dữ liệu/ID không hợp lệ, 404 không tìm thấy, 409 trùng `deviceId`, 503 lỗi kết nối DB.
 
+### Frontend (React + Vite)
+
+```bash
+cd frontend
+npm install
+npm run dev     # http://localhost:5173
+npm run build   # xuất ra frontend/dist
+```
+
+Địa chỉ backend lấy từ `frontend/public/config.js` (`window.APP_CONFIG.API_URL`, đổi được khi
+triển khai mà không cần build lại), nếu không có thì dùng biến build `VITE_API_URL`.
+Chức năng: danh sách, chi tiết, thêm, sửa, xóa, tìm kiếm, hiển thị tình trạng bằng nhãn màu,
+trạng thái đang tải, thông báo lỗi/kết quả thao tác.
+
 > Không commit tệp `.env`, mật khẩu hay chuỗi kết nối MongoDB lên GitHub.

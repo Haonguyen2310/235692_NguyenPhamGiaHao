@@ -152,7 +152,13 @@ CORS: backend chỉ chấp nhận origin trong `CORS_ORIGIN` (nhiều origin cá
 
 ### URL đã triển khai
 
-- Frontend: _(cập nhật sau khi triển khai)_
-- Backend API: _(cập nhật sau khi triển khai)_
+- Frontend: https://web-235692.onrender.com/
+- Backend API: https://backend-latest-36a9.onrender.com (kiểm tra: `/health`, `/api/devices`)
+- GitHub: https://github.com/Haonguyen2310/235692_NguyenPhamGiaHao
+- Docker Hub backend: https://hub.docker.com/r/haonguyen235692/backend
+- Docker Hub frontend: https://hub.docker.com/r/haonguyen235692/frontend
+- MongoDB Atlas: database `235692_NguyenPhamGiaHao`, collection `devices`
+
+Lưu ý: gói Free của Render tự ngủ khi không có truy cập, lần mở đầu có thể chậm 30-60 giây.
 
 > Không commit tệp `.env`, mật khẩu hay chuỗi kết nối MongoDB lên GitHub.

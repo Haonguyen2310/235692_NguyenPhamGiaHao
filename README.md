@@ -30,6 +30,19 @@ xóa, tìm kiếm thiết bị và theo dõi tình trạng sử dụng (Đang s�
 
 ## Hướng dẫn cài đặt, chạy chương trình
 
-Sẽ được bổ sung chi tiết ở các câu tiếp theo (backend, frontend, Docker).
+### Cơ sở dữ liệu (MongoDB Atlas)
+
+- Database: `235692_NguyenPhamGiaHao`, collection: `devices`
+- Các trường: `deviceId`, `name`, `deviceType`, `room`, `brand`, `model`, `quantity`,
+  `status` (Đang sử dụng / Hư hỏng / Đang sửa chữa / Ngừng sử dụng), `purchaseDate`, `description`
+- Tạo Database User, mở Network Access (cho Render: `0.0.0.0/0`), lấy chuỗi kết nối.
+- Cấu hình backend:
+
+```bash
+cd backend
+cp .env.example .env   # điền MONGODB_URI thật
+npm install
+npm run seed           # nạp 5 thiết bị mẫu
+```
 
 > Không commit tệp `.env`, mật khẩu hay chuỗi kết nối MongoDB lên GitHub.

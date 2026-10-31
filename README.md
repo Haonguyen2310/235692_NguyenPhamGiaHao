@@ -45,4 +45,26 @@ npm install
 npm run seed           # nạp 5 thiết bị mẫu
 ```
 
+### Backend API
+
+```bash
+cd backend
+npm install
+npm run dev     # hoặc npm start; mặc định http://localhost:5000
+npm test        # cần MONGODB_URI trỏ tới một MongoDB (dùng DB riêng device_test)
+```
+
+Biến môi trường (xem `backend/.env.example`): `PORT`, `MONGODB_URI`, `DB_NAME`, `CORS_ORIGIN`.
+
+| Phương thức | Endpoint | Chức năng |
+|---|---|---|
+| GET | `/health` | Kiểm tra trạng thái backend/DB |
+| GET | `/api/devices` | Danh sách thiết bị (`?search=` theo mã, tên, loại, phòng; `?status=`) |
+| GET | `/api/devices/:id` | Xem một thiết bị |
+| POST | `/api/devices` | Thêm thiết bị |
+| PUT | `/api/devices/:id` | Cập nhật thiết bị |
+| DELETE | `/api/devices/:id` | Xóa thiết bị |
+
+Mã lỗi: 400 dữ liệu/ID không hợp lệ, 404 không tìm thấy, 409 trùng `deviceId`, 503 lỗi kết nối DB.
+
 > Không commit tệp `.env`, mật khẩu hay chuỗi kết nối MongoDB lên GitHub.

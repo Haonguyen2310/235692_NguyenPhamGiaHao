@@ -81,4 +81,20 @@ triển khai mà không cần build lại), nếu không có thì dùng biến b
 Chức năng: danh sách, chi tiết, thêm, sửa, xóa, tìm kiếm, hiển thị tình trạng bằng nhãn màu,
 trạng thái đang tải, thông báo lỗi/kết quả thao tác.
 
+### Chạy backend bằng Docker
+
+```bash
+docker build -t haonguyen235692/backend ./backend
+docker run -d --name backend -p 5000:5000 \
+  -e MONGODB_URI="<chuỗi kết nối Atlas>" \
+  -e DB_NAME=235692_NguyenPhamGiaHao \
+  -e CORS_ORIGIN=http://localhost:8080 \
+  haonguyen235692/backend
+curl http://localhost:5000/health
+```
+
+Image trên Docker Hub: `docker pull haonguyen235692/backend`
+(https://hub.docker.com/r/haonguyen235692/backend). Image không chứa thông tin bí mật;
+chuỗi kết nối được truyền qua biến môi trường lúc chạy.
+
 > Không commit tệp `.env`, mật khẩu hay chuỗi kết nối MongoDB lên GitHub.

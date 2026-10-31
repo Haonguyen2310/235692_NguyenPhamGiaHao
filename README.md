@@ -97,4 +97,18 @@ Image trên Docker Hub: `docker pull haonguyen235692/backend`
 (https://hub.docker.com/r/haonguyen235692/backend). Image không chứa thông tin bí mật;
 chuỗi kết nối được truyền qua biến môi trường lúc chạy.
 
+### Chạy frontend bằng Docker
+
+```bash
+docker build -t haonguyen235692/frontend ./frontend
+docker run -d --name frontend -p 8080:80 \
+  -e API_URL=http://localhost:5000 \
+  haonguyen235692/frontend
+# mở http://localhost:8080
+```
+
+`API_URL` là địa chỉ backend; container sinh lại `config.js` từ biến này mỗi lần khởi động
+nên không cần build lại image khi đổi backend. Trên Render, image lắng nghe theo biến `PORT`.
+Image: `docker pull haonguyen235692/frontend` (https://hub.docker.com/r/haonguyen235692/frontend).
+
 > Không commit tệp `.env`, mật khẩu hay chuỗi kết nối MongoDB lên GitHub.

@@ -138,6 +138,18 @@ New → Web Service → Existing image `docker.io/haonguyen235692/backend:latest
 
 MongoDB Atlas → Network Access phải cho phép IP của Render (`0.0.0.0/0`).
 
+Kiểm tra backend sau khi triển khai (thay `<API_URL>`):
+
+```bash
+curl <API_URL>/health
+curl <API_URL>/api/devices
+curl "<API_URL>/api/devices?search=projector"
+curl -X POST <API_URL>/api/devices -H "Content-Type: application/json" \
+  -d '{"deviceId":"TEST-1","name":"Test","deviceType":"Khác","room":"A1","quantity":1}'
+```
+
+CORS: backend chỉ chấp nhận origin trong `CORS_ORIGIN` (nhiều origin cách nhau bằng dấu phẩy).
+
 ### URL đã triển khai
 
 - Frontend: _(cập nhật sau khi triển khai)_

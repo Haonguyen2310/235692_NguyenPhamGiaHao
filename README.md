@@ -111,4 +111,36 @@ docker run -d --name frontend -p 8080:80 \
 nên không cần build lại image khi đổi backend. Trên Render, image lắng nghe theo biến `PORT`.
 Image: `docker pull haonguyen235692/frontend` (https://hub.docker.com/r/haonguyen235692/frontend).
 
+## Triển khai trên Render
+
+### Frontend (Câu 7) - tên dịch vụ `web-235692`
+
+New → Web Service → Existing image `docker.io/haonguyen235692/frontend:latest`
+(hoặc kết nối GitHub repo, Runtime Docker, Root Directory `frontend`). Biến môi trường:
+
+| Biến | Giá trị |
+|---|---|
+| `API_URL` | URL backend trên Render (không có dấu `/` cuối) |
+
+Nếu chọn Static Site: Root Directory `frontend`, Build `npm ci && npm run build`, Publish `dist`,
+biến `VITE_API_URL` = URL backend, thêm rewrite `/*` → `/index.html`.
+
+### Backend (Câu 8) - tên dịch vụ `api-235692`
+
+New → Web Service → Existing image `docker.io/haonguyen235692/backend:latest`
+(hoặc GitHub repo, Runtime Docker, Root Directory `backend`), Health Check Path `/health`. Biến môi trường:
+
+| Biến | Giá trị |
+|---|---|
+| `MONGODB_URI` | chuỗi kết nối MongoDB Atlas (nhập trên Render, không commit) |
+| `DB_NAME` | `235692_NguyenPhamGiaHao` |
+| `CORS_ORIGIN` | URL frontend trên Render |
+
+MongoDB Atlas → Network Access phải cho phép IP của Render (`0.0.0.0/0`).
+
+### URL đã triển khai
+
+- Frontend: _(cập nhật sau khi triển khai)_
+- Backend API: _(cập nhật sau khi triển khai)_
+
 > Không commit tệp `.env`, mật khẩu hay chuỗi kết nối MongoDB lên GitHub.
